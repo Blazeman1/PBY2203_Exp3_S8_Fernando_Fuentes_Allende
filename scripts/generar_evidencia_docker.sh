@@ -24,6 +24,10 @@ set -euo pipefail
 
 cd "$(dirname "$0")/.."
 mkdir -p evidencias
+# Ver el comentario equivalente en scripts/generar_evidencia.sh: evidencias/*.log esta versionado
+# a proposito, asi que sin este borrado una corrida fallida podria dejar mezclados sus .log
+# nuevos con los de una corrida anterior ya comprometida a git.
+rm -f evidencias/evidencia1[2-6]*.log
 
 COMPOSE="docker compose -f docker-compose.yaml"
 

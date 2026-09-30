@@ -29,6 +29,20 @@
     </properties>
 
     <dependencies>
+        <!-- spring-security-oauth2-authorization-server SOLO trae las clases del protocolo OAuth2
+             (RegisteredClient, OAuth2AuthorizationServerConfigurer, etc.), pero NO trae un
+             servidor web servlet ni la auto-configuracion de Spring Security que registra el bean
+             prototype de HttpSecurity que SecurityFilterChain necesita como parametro -de ahi el
+             error en runtime "No qualifying bean of type HttpSecurity available" que aparecia sin
+             estas dos dependencias explicitas. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
         <!-- Spring Authorization Server: version gestionada por spring-boot-starter-parent
              (igual que spring-kafka en los demas modulos), sin fijarla a mano aqui. -->
         <dependency>

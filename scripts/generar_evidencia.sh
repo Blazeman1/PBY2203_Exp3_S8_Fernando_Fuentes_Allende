@@ -41,6 +41,17 @@ for arg in "$@"; do
 done
 
 mkdir -p evidencias
+# Se limpian los .log previos ANTES de arrancar nada: este directorio se versiona a proposito
+# (ver .gitignore, "!evidencias/*.log") para que la evidencia quede visible en el propio repo, pero
+# eso significa que un checkout de CI trae consigo los .log de la corrida anterior ya comprometida
+# a git. Sin este borrado, una corrida que falla a mitad de camino (p.ej. auth-server no arranca)
+# deja sus archivos nuevos (evidencia01*) mezclados con los VIEJOS evidencia02+ que ya estaban en
+# el repo, y el artefacto subido por el workflow (siempre se publica, incluso si el job termina en
+# rojo: ver "if: always()" en evidencia-ejecucion.yml) da la falsa impresion de una corrida
+# completa y exitosa aunque el job haya fallado. Con el directorio limpio de entrada, la
+# presencia (o ausencia) de cada evidencia.log refleja fielmente que esta corrida, y no una
+# anterior, llego (o no) hasta ese paso.
+rm -f evidencias/*.log
 PIDS_LEVANTADOS=()
 ULTIMO_PID=""
 
