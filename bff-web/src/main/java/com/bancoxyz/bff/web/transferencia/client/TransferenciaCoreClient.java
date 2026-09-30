@@ -1,5 +1,6 @@
 package com.bancoxyz.bff.web.transferencia.client;
 
+import com.bancoxyz.bff.web.client.CoreServiceTokenProvider;
 import com.bancoxyz.bff.web.config.CoreServiceProperties;
 import com.bancoxyz.bff.web.exception.CoreServiceNoDisponibleException;
 import com.bancoxyz.bff.web.transferencia.dto.TransferenciaEstadoCoreDTO;
@@ -61,3 +62,5 @@ public class TransferenciaCoreClient {
         return headers;
     }
 }
+
+
