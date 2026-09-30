@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>3.3.4</version>
+        <relativePath/>
+    </parent>
+
+    <groupId>com.bancoxyz</groupId>
+    <artifactId>auth-server</artifactId>
+    <version>1.0.0</version>
+    <name>auth-server</name>
+    <description>
+        Servidor de autorizacion OAuth2.0 (Spring Authorization Server) de la Semana 8. Emite
+        tokens de acceso via el flujo client_credentials para la comunicacion servicio-a-servicio
+        entre los 3 BFF y core-service, reemplazando la clave estatica compartida
+        (X-Internal-Api-Key) que se usaba desde la Semana 4. El login de cada canal (JWT
+        web/movil, sesion ATM) no cambia: sigue siendo responsabilidad de cada BFF, tal como se
+        justifica en el README (seccion 13).
+    </description>
+
+    <properties>
+        <java.version>21</java.version>
+    </properties>
+
+    <dependencies>
+        <!-- Spring Authorization Server: version gestionada por spring-boot-starter-parent
+             (igual que spring-kafka en los demas modulos), sin fijarla a mano aqui. -->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-oauth2-authorization-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <finalName>auth-server</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

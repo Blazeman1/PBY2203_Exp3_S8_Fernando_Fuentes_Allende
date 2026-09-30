@@ -1,0 +1,12 @@
+# Activado con SPRING_PROFILES_ACTIVE=docker (ver docker-compose.yaml).
+#
+# La URL de auth-server (core-service.oauth2.token-uri) NO se sobreescribe aqui: viene de
+# config-server (ver config-repo/bff-atm-docker.yml).
+spring:
+  config:
+    import: "optional:configserver:http://config-server:8888"
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/

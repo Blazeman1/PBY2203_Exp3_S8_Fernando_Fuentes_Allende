@@ -1,0 +1,15 @@
+# Activado con SPRING_PROFILES_ACTIVE=docker (ver docker-compose.yaml).
+#
+# La URL de auth-server (core-service.oauth2.token-uri) NO se sobreescribe aqui: viene de
+# config-server (ver config-repo/bff-web-docker.yml), igual que el resto de las properties de
+# negocio de este BFF.
+spring:
+  config:
+    import: "optional:configserver:http://config-server:8888"
+  kafka:
+    bootstrap-servers: kafka:9092
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/

@@ -1,0 +1,11 @@
+# Spring Cloud Config Server sirve este archivo SOLO cuando el cliente pide el perfil "docker"
+# (SPRING_PROFILES_ACTIVE=docker), fusionandolo sobre core-service.yml: todo lo que no se
+# redefine aqui (los topicos de Kafka, por ejemplo) se mantiene igual que en ejecucion local.
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Dentro de la red de docker-compose, auth-server se alcanza por el nombre de su
+          # servicio, no por "localhost".
+          issuer-uri: http://auth-server:9000

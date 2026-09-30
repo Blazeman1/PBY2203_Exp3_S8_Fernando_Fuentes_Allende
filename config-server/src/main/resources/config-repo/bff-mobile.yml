@@ -1,6 +1,10 @@
 core-service:
   base-url: http://core-service
-  api-key: "clave-interna-banco-xyz-2026"
+  oauth2:
+    token-uri: http://localhost:9000/oauth2/token
+    client-id: bff-mobile-client
+    # Debe coincidir con auth-server.clientes.bff-mobile.secreto (config del propio auth-server).
+    client-secret: "secreto-oauth2-bff-mobile-banco-xyz-no-usar-en-produccion-2026"
 
 seguridad:
   jwt:

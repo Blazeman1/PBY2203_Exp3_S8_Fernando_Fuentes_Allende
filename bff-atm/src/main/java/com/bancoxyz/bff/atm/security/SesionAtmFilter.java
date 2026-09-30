@@ -29,7 +29,9 @@ public class SesionAtmFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return request.getRequestURI().equals("/api/atm/sesion");
+        // /actuator/** (Semana 8): lo consulta el healthcheck de docker-compose.
+        return request.getRequestURI().equals("/api/atm/sesion")
+                || request.getRequestURI().startsWith("/actuator/");
     }
 
     @Override

@@ -120,7 +120,7 @@ esperar_kafka() {
     sleep 2
   done
   echo "Kafka no respondio en localhost:9092 tras $intentos intentos (~$((intentos * 2))s)." >&2
-  echo "¿Esta Docker Desktop corriendo? Probar: docker compose up -d kafka" >&2
+  echo "¿Esta Docker Desktop corriendo? Probar: docker compose -f docker-compose.yml up -d kafka" >&2
   return 1
 }
 

@@ -1,0 +1,17 @@
+# Activado con SPRING_PROFILES_ACTIVE=docker (ver docker-compose.yaml). config-server, eureka-server
+# y kafka dejan de ser "localhost" (asumido cuando este servicio corre con java -jar fuera de
+# Docker) y pasan a resolverse por el nombre de su servicio en la red de docker-compose.
+#
+# La URL de auth-server (spring.security.oauth2.resourceserver.jwt.issuer-uri) NO se sobreescribe
+# aqui: ese valor viene de config-server (ver config-repo/core-service-docker.yml), que es quien
+# ya centraliza toda la configuracion especifica de negocio de este servicio.
+spring:
+  config:
+    import: "optional:configserver:http://config-server:8888"
+  kafka:
+    bootstrap-servers: kafka:9092
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://eureka-server:8761/eureka/

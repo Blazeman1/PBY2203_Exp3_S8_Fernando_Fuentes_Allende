@@ -17,8 +17,8 @@
     <name>core-service</name>
     <description>
         Backend generalizado (no expuesto a ningun frontend) que centraliza el acceso a los datos
-        legacy del Banco XYZ. Unicamente los tres BFF (web, movil, cajeros) lo consumen, mediante
-        una clave interna compartida (X-Internal-Api-Key).
+        legacy del Banco XYZ. Unicamente los tres BFF (web, movil, cajeros) lo consumen,
+        autenticados como clientes OAuth2.0 (client_credentials) ante auth-server (Semana 8).
     </description>
 
     <properties>
@@ -50,6 +50,20 @@
         <dependency>
             <groupId>org.springframework.kafka</groupId>
             <artifactId>spring-kafka</artifactId>
+        </dependency>
+
+        <!-- OAuth2 Resource Server (Semana 8): valida los JWT emitidos por auth-server, en
+             reemplazo de la clave estatica compartida X-Internal-Api-Key (ver
+             ResourceServerConfig). -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+
+        <!-- Expone /actuator/health (Semana 8): usado por el healthcheck de docker-compose. -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
     </dependencies>
 

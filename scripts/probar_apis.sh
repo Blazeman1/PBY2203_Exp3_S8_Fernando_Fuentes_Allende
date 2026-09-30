@@ -13,15 +13,23 @@
 # (ver server.ssl en cada application.yml); por eso las llamadas a esos tres usan -k (curl
 # ignora la validacion de la cadena de confianza, como se haria con un cliente que aun no
 # confia en la CA interna del banco). core-service NO se expone a ningun frontend (solo lo
-# consumen los BFF via X-Internal-Api-Key), por lo que se mantiene en HTTP dentro de la red
-# interna, una decision documentada en el README (seccion "Seguridad de transporte").
+# consumen los BFF, autenticados ante auth-server como clientes OAuth2.0 client_credentials -
+# Semana 8), por lo que se mantiene en HTTP dentro de la red interna, una decision documentada
+# en el README (seccion "Seguridad de transporte").
 set -euo pipefail
 
 CORE=http://localhost:8080
 WEB=https://localhost:8081
 MOBILE=https://localhost:8082
 ATM=https://localhost:8083
-CLAVE_INTERNA="clave-interna-banco-xyz-2026"
+AUTH_SERVER=http://localhost:9000
+# Mismas credenciales que auth-server/src/main/resources/application.yml (bff-web-client). Se usan
+# aqui SOLO para demostrar, desde afuera, que un cliente con las credenciales correctas puede
+# obtener un token y llamar a core-service directamente -exactamente lo que hace bff-web
+# internamente en cada peticion (ver CoreServiceTokenProvider), nunca algo que un frontend real
+# conozca o pueda hacer.
+CLIENT_ID_INTERNO="bff-web-client"
+CLIENT_SECRET_INTERNO="secreto-oauth2-bff-web-banco-xyz-no-usar-en-produccion-2026"
 
 separador() { echo; echo "=== $1 ==="; }
 
@@ -43,11 +51,17 @@ verificar_token() {
   fi
 }
 
-separador "0. core-service NO debe responder sin la clave interna (principio central del BFF)"
-curl -s -o /dev/null -w "GET /internal/cuentas SIN clave -> HTTP %{http_code} (se espera 403)\n" "$CORE/internal/cuentas"
+separador "0. core-service NO debe responder sin un token OAuth2 valido (principio central del BFF)"
+curl -s -o /dev/null -w "GET /internal/cuentas SIN token -> HTTP %{http_code} (se espera 401)\n" "$CORE/internal/cuentas"
 
-separador "0.1 core-service SI responde con la clave interna (uso exclusivo de los BFF)"
-curl -s -H "X-Internal-Api-Key: $CLAVE_INTERNA" "$CORE/internal/cuentas/101" | jq .
+separador "0.1 auth-server emite un access token via client_credentials (flujo maquina-a-maquina, Semana 8)"
+TOKEN_INTERNO=$(curl -s -u "$CLIENT_ID_INTERNO:$CLIENT_SECRET_INTERNO" \
+  -d "grant_type=client_credentials" "$AUTH_SERVER/oauth2/token" | jq -r .access_token)
+verificar_token "token interno (client_credentials)" "$TOKEN_INTERNO"
+echo "Token interno obtenido: ${TOKEN_INTERNO:0:24}..."
+
+separador "0.2 core-service SI responde con ese token Bearer (uso exclusivo de los BFF)"
+curl -s -H "Authorization: Bearer $TOKEN_INTERNO" "$CORE/internal/cuentas/101" | jq .
 
 separador "1. BFF WEB: login (cuenta 101, titular 'John Doe') y consulta completa de la cuenta"
 TOKEN_WEB=$(curl -s -k -X POST "$WEB/api/web/auth/login" \

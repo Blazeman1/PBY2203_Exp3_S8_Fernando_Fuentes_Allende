@@ -1,0 +1,6 @@
+# Activado con SPRING_PROFILES_ACTIVE=docker (ver docker-compose.yaml). Sobreescribe unicamente
+# lo que cambia al correr dentro de la red de Docker: el nombre por el que este mismo servicio es
+# alcanzable ya no es "localhost" sino el nombre del servicio/contenedor ("auth-server"), el mismo
+# que usan core-service y los 3 BFF para llegar hasta aqui dentro de esa red.
+auth-server:
+  issuer-uri: http://auth-server:9000

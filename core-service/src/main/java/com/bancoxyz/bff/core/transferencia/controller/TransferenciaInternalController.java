@@ -9,8 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
- * API interna (misma proteccion que {@code CuentaInternalController}: filtrada por
- * {@code X-Internal-Api-Key}) para que un BFF consulte el estado actual de una transferencia.
+ * API interna (misma proteccion que {@code CuentaInternalController}: exige un JWT valido con
+ * scope {@code core-service.access}, ver {@code ResourceServerConfig}) para que un BFF consulte
+ * el estado actual de una transferencia.
  *
  * <p>Nota deliberada: esta consulta es SINCRONICA (REST tradicional, reutilizando Eureka +
  * Spring Cloud LoadBalancer + Circuit Breaker ya existentes desde la Semana 6), no un segundo

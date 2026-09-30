@@ -5,7 +5,7 @@
 # "John Doe", ya documentado en el README) y con Kafka + los 6 microservicios ya arriba.
 #
 # Requiere: curl, jq. Asume Kafka en localhost:9092 y los 6 servicios de la Semana 6 mas
-# notificaciones-service arriba en sus puertos por defecto.
+# notificaciones-service y auth-server (Semana 8) arriba en sus puertos por defecto.
 set -euo pipefail
 
 cd "$(dirname "$0")/.."
@@ -13,12 +13,29 @@ source scripts/_common.sh
 
 CORE=http://localhost:8080
 WEB=https://localhost:8081
-CLAVE_INTERNA="clave-interna-banco-xyz-2026"
+AUTH_SERVER=http://localhost:9000
+# Mismas credenciales que auth-server/src/main/resources/application.yml (bff-web-client): se
+# usan aqui solo para poder consultar el saldo "por detras" (via /internal/cuentas, protegido con
+# OAuth2 desde la Semana 8) y verificar el efecto de cada transferencia, igual que ya se hacia
+# antes con X-Internal-Api-Key.
+CLIENT_ID_INTERNO="bff-web-client"
+CLIENT_SECRET_INTERNO="secreto-oauth2-bff-web-banco-xyz-no-usar-en-produccion-2026"
 
 separador() { echo; echo "=== $1 ==="; }
 
+# Cacheado en una variable de modulo: evitar pedir un token nuevo a auth-server en cada llamada a
+# saldo_de (se llama varias veces por escenario).
+TOKEN_INTERNO=""
+token_interno() {
+  if [ -z "$TOKEN_INTERNO" ] || [ "$TOKEN_INTERNO" = "null" ]; then
+    TOKEN_INTERNO=$(curl -s -u "$CLIENT_ID_INTERNO:$CLIENT_SECRET_INTERNO" \
+      -d "grant_type=client_credentials" "$AUTH_SERVER/oauth2/token" | jq -r .access_token)
+  fi
+  echo "$TOKEN_INTERNO"
+}
+
 saldo_de() {
-  curl -s -H "X-Internal-Api-Key: $CLAVE_INTERNA" "$CORE/internal/cuentas/$1" | jq -r .saldo
+  curl -s -H "Authorization: Bearer $(token_interno)" "$CORE/internal/cuentas/$1" | jq -r .saldo
 }
 
 separador "0. Login canal WEB (cuenta 101, 'John Doe') - se reutiliza para las 3 transferencias"

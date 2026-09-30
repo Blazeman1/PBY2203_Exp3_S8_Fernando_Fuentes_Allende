@@ -1,0 +1,249 @@
+# Orquestacion COMPLETA del ecosistema Banco XYZ (Semana 8): los 8 microservicios Java + Kafka,
+# cada uno en su propio contenedor, construidos a partir del codigo fuente (ver el Dockerfile de
+# cada modulo) y conectados entre si por nombre de servicio dentro de la red que crea
+# docker-compose automaticamente (sin configurar nada de red a mano).
+#
+# Distinto del docker-compose.yml original de la Semana 7 (que SOLO levanta Kafka, para un modo
+# hibrido donde los 8 microservicios corren con "java -jar" en el host): este archivo reemplaza
+# ese modo hibrido por un despliegue 100% contenedorizado. Ver README.md, seccion 14, para cuando
+# usar uno u otro.
+#
+# Uso:
+#   docker compose -f docker-compose.yaml up -d --build   # construye las imagenes y levanta todo
+#   docker compose -f docker-compose.yaml ps               # ver el estado/salud de cada servicio
+#   docker compose -f docker-compose.yaml logs -f core-service
+#   docker compose -f docker-compose.yaml down              # detener y limpiar
+#
+# Cada servicio Java activa el perfil "docker" (SPRING_PROFILES_ACTIVE=docker), que sobreescribe
+# unicamente las direcciones de Eureka/config-server/Kafka/auth-server que cambian de "localhost"
+# (ejecucion en el host) al nombre logico del servicio dentro de esta red (ver cada
+# application-docker.yml y, para core-service/bff-*, config-repo/*-docker.yml). El resto de la
+# configuracion (topicos de Kafka, credenciales OAuth2, umbrales de Resilience4j, etc.) no cambia:
+# sigue viniendo de config-server, exactamente igual que en ejecucion local.
+#
+# Los puertos publicados hacia el host son los MISMOS que en ejecucion local (8080-8085, 8761,
+# 8888, 9000): los scripts scripts/probar_apis.sh y scripts/probar_transferencias.sh funcionan sin
+# ningun cambio contra este stack, apunten a "java -jar" en el host o a estos contenedores.
+services:
+
+  # ---------------------------------------------------------------------------------------------
+  # Infraestructura (Semana 6/7): sin dependencias entre si.
+  # ---------------------------------------------------------------------------------------------
+
+  config-server:
+    build: ./config-server
+    container_name: config-server
+    ports:
+      - "8888:8888"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8888/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  eureka-server:
+    build: ./eureka-server
+    container_name: eureka-server
+    ports:
+      - "8761:8761"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8761/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  auth-server:
+    build: ./auth-server
+    container_name: auth-server
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "9000:9000"
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:9000/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 20s
+
+  kafka:
+    image: apache/kafka:3.7.0
+    container_name: kafka
+    ports:
+      # 9092 solo queda accesible DENTRO de la red de docker-compose (bootstrap interno de los
+      # microservicios); 9094 es el listener publicado hacia el host, para inspeccionar el broker
+      # desde afuera (ej. un cliente Kafka local) sin interferir con el trafico interno.
+      - "9094:9094"
+    environment:
+      KAFKA_NODE_ID: 1
+      KAFKA_PROCESS_ROLES: broker,controller
+      KAFKA_LISTENERS: PLAINTEXT://:9092,CONTROLLER://:9093,EXTERNAL://:9094
+      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://kafka:9092,EXTERNAL://localhost:9094
+      KAFKA_CONTROLLER_LISTENER_NAMES: CONTROLLER
+      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: CONTROLLER:PLAINTEXT,PLAINTEXT:PLAINTEXT,EXTERNAL:PLAINTEXT
+      KAFKA_INTER_BROKER_LISTENER_NAME: PLAINTEXT
+      KAFKA_CONTROLLER_QUORUM_VOTERS: 1@kafka:9093
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
+      KAFKA_AUTO_CREATE_TOPICS_ENABLE: "true"
+      KAFKA_NUM_PARTITIONS: "4"
+    healthcheck:
+      test: ["CMD-SHELL", "/opt/kafka/bin/kafka-broker-api-versions.sh --bootstrap-server localhost:9092 || exit 1"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 15s
+
+  # ---------------------------------------------------------------------------------------------
+  # Backend generalizado: espera a config-server, eureka-server, kafka y auth-server.
+  # ---------------------------------------------------------------------------------------------
+
+  core-service:
+    build: ./core-service
+    container_name: core-service
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8080:8080"
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      auth-server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  # ---------------------------------------------------------------------------------------------
+  # Los 3 BFF: esperan a core-service (via Eureka) y a auth-server (para obtener su token).
+  # ---------------------------------------------------------------------------------------------
+
+  bff-web:
+    build: ./bff-web
+    container_name: bff-web
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8081:8081"
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+      core-service:
+        condition: service_healthy
+      auth-server:
+        condition: service_healthy
+    healthcheck:
+      # -k: el certificado del keystore es autofirmado (ver application.yml de bff-web).
+      test: ["CMD", "curl", "-kf", "https://localhost:8081/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  bff-mobile:
+    build: ./bff-mobile
+    container_name: bff-mobile
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8082:8082"
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      core-service:
+        condition: service_healthy
+      auth-server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-kf", "https://localhost:8082/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  bff-atm:
+    build: ./bff-atm
+    container_name: bff-atm
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+    ports:
+      - "8083:8083"
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      core-service:
+        condition: service_healthy
+      auth-server:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-kf", "https://localhost:8083/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  # ---------------------------------------------------------------------------------------------
+  # notificaciones-service (Semana 7): 2 instancias de la MISMA imagen, mismo consumer group de
+  # Kafka, distinguidas solo por SERVER_PORT -exactamente igual que en ejecucion local con
+  # "java -jar", solo que aqui cada instancia es su propio contenedor en vez de su propio proceso.
+  # ---------------------------------------------------------------------------------------------
+
+  notificaciones-service-a:
+    build: ./notificaciones-service
+    container_name: notificaciones-service-a
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 8084
+    ports:
+      - "8084:8084"
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8084/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s
+
+  notificaciones-service-b:
+    build: ./notificaciones-service
+    container_name: notificaciones-service-b
+    environment:
+      SPRING_PROFILES_ACTIVE: docker
+      SERVER_PORT: 8085
+    ports:
+      - "8085:8085"
+    depends_on:
+      config-server:
+        condition: service_healthy
+      eureka-server:
+        condition: service_healthy
+      kafka:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8085/actuator/health"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 30s

@@ -1,5 +1,12 @@
-core:
-  internal-api-key: "clave-interna-banco-xyz-2026"
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          # Spring resuelve automaticamente el JWK Set de auth-server a partir de este issuer
+          # (via /.well-known/oauth-authorization-server), sin necesidad de fijar a mano la
+          # URL del endpoint de claves publicas.
+          issuer-uri: http://localhost:9000
 
 kafka:
   topics:

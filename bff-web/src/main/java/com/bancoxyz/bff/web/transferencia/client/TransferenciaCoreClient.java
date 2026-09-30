@@ -23,10 +23,13 @@ public class TransferenciaCoreClient {
 
     private final RestTemplate restTemplate;
     private final CoreServiceProperties propiedades;
+    private final CoreServiceTokenProvider tokenProvider;
 
-    public TransferenciaCoreClient(RestTemplate restTemplate, CoreServiceProperties propiedades) {
+    public TransferenciaCoreClient(RestTemplate restTemplate, CoreServiceProperties propiedades,
+                                    CoreServiceTokenProvider tokenProvider) {
         this.restTemplate = restTemplate;
         this.propiedades = propiedades;
+        this.tokenProvider = tokenProvider;
     }
 
     @CircuitBreaker(name = "coreService", fallbackMethod = "obtenerEstadoFallback")
@@ -54,7 +57,7 @@ public class TransferenciaCoreClient {
 
     private HttpHeaders cabecerasInternas() {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("X-Internal-Api-Key", propiedades.getApiKey());
+        headers.setBearerAuth(tokenProvider.obtenerToken());
         return headers;
     }
 }

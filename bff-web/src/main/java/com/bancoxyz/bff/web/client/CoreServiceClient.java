@@ -14,17 +14,21 @@ import org.springframework.stereotype.Component;
 /**
  * Unico punto de acceso de bff-web hacia el backend generalizado (core-service). Ningun
  * controlador de este modulo llama a {@code RestTemplate} directamente: todos pasan por aqui,
- * que es quien agrega el encabezado {@code X-Internal-Api-Key} de forma centralizada.
+ * que es quien agrega el encabezado {@code Authorization: Bearer <token>} de forma centralizada
+ * (Semana 8: reemplaza la antigua clave compartida {@code X-Internal-Api-Key}).
  */
 @Component
 public class CoreServiceClient {
 
     private final RestTemplate restTemplate;
     private final CoreServiceProperties propiedades;
+    private final CoreServiceTokenProvider tokenProvider;
 
-    public CoreServiceClient(RestTemplate restTemplate, CoreServiceProperties propiedades) {
+    public CoreServiceClient(RestTemplate restTemplate, CoreServiceProperties propiedades,
+                              CoreServiceTokenProvider tokenProvider) {
         this.restTemplate = restTemplate;
         this.propiedades = propiedades;
+        this.tokenProvider = tokenProvider;
     }
 
     @CircuitBreaker(name = "coreService", fallbackMethod = "obtenerCuentaFallback")
@@ -52,7 +56,11 @@ public class CoreServiceClient {
 
     private HttpHeaders cabecerasInternas() {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("X-Internal-Api-Key", propiedades.getApiKey());
+        // Si auth-server no responde, tokenProvider.obtenerToken() lanza una excepcion que se
+        // propaga tal cual al metodo @CircuitBreaker que llamo a este cliente: un token no
+        // obtenido y un core-service caido producen, a proposito, el mismo efecto observable
+        // (fallback de "core-service no disponible"), sin necesidad de un circuit breaker aparte.
+        headers.setBearerAuth(tokenProvider.obtenerToken());
         return headers;
     }
 }

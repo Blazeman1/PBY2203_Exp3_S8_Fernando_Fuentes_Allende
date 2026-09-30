@@ -34,7 +34,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return request.getRequestURI().startsWith("/api/web/auth/");
+        // /actuator/** (Semana 8): lo consulta el healthcheck de docker-compose, que no tiene
+        // forma de obtener un JWT, y necesita ver a este servicio "arriba" antes de que Eureka
+        // siquiera lo registre.
+        return request.getRequestURI().startsWith("/api/web/auth/")
+                || request.getRequestURI().startsWith("/actuator/");
     }
 
     @Override

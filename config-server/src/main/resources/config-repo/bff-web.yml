@@ -1,6 +1,13 @@
 core-service:
   base-url: http://core-service
-  api-key: "clave-interna-banco-xyz-2026"
+  oauth2:
+    # Fijo por configuracion (no via Eureka): auth-server no esta registrado como servicio
+    # descubrible, ver justificacion en AuthServerApplication.
+    token-uri: http://localhost:9000/oauth2/token
+    client-id: bff-web-client
+    # Debe coincidir con auth-server.clientes.bff-web.secreto (config del propio auth-server).
+    # Solo un valor de demostracion academica; en produccion viviria en un gestor de secretos.
+    client-secret: "secreto-oauth2-bff-web-banco-xyz-no-usar-en-produccion-2026"
 
 seguridad:
   jwt:

@@ -1,0 +1,5 @@
+# Servido solo cuando bff-web pide el perfil "docker" (SPRING_PROFILES_ACTIVE=docker), fusionado
+# sobre bff-web.yml.
+core-service:
+  oauth2:
+    token-uri: http://auth-server:9000/oauth2/token

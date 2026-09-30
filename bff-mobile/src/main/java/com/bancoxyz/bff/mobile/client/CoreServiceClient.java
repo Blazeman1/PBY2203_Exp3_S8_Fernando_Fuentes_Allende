@@ -11,15 +11,23 @@ import org.springframework.stereotype.Component;
 import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
+/**
+ * Unico punto de acceso de bff-mobile hacia core-service. Agrega el encabezado
+ * {@code Authorization: Bearer <token>} de forma centralizada (Semana 8: reemplaza la antigua
+ * clave compartida {@code X-Internal-Api-Key}).
+ */
 @Component
 public class CoreServiceClient {
 
     private final RestTemplate restTemplate;
     private final CoreServiceProperties propiedades;
+    private final CoreServiceTokenProvider tokenProvider;
 
-    public CoreServiceClient(RestTemplate restTemplate, CoreServiceProperties propiedades) {
+    public CoreServiceClient(RestTemplate restTemplate, CoreServiceProperties propiedades,
+                              CoreServiceTokenProvider tokenProvider) {
         this.restTemplate = restTemplate;
         this.propiedades = propiedades;
+        this.tokenProvider = tokenProvider;
     }
 
     @CircuitBreaker(name = "coreService", fallbackMethod = "obtenerCuentaFallback")
@@ -47,7 +55,7 @@ public class CoreServiceClient {
 
     private HttpHeaders cabecerasInternas() {
         HttpHeaders headers = new HttpHeaders();
-        headers.set("X-Internal-Api-Key", propiedades.getApiKey());
+        headers.setBearerAuth(tokenProvider.obtenerToken());
         return headers;
     }
 }

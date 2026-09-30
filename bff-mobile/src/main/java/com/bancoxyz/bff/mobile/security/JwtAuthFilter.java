@@ -24,7 +24,9 @@ public class JwtAuthFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        return request.getRequestURI().startsWith("/api/mobile/auth/");
+        // /actuator/** (Semana 8): lo consulta el healthcheck de docker-compose.
+        return request.getRequestURI().startsWith("/api/mobile/auth/")
+                || request.getRequestURI().startsWith("/actuator/");
     }
 
     @Override

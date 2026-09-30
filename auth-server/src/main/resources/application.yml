@@ -1,0 +1,35 @@
+server:
+  port: 9000
+
+spring:
+  application:
+    name: auth-server
+  # Este servicio, igual que config-server y eureka-server, es una direccion fija conocida de
+  # antemano por sus clientes: no consume config-server (ver Javadoc de AuthServerApplication).
+  # Por eso sus propiedades viven aqui mismo, en vez de en config-repo.
+
+# Identificador publico de este servidor de autorizacion (claim "iss" de cada JWT emitido).
+# En docker-compose este valor se sobreescribe (ver application-docker.yml) al nombre del
+# contenedor, para que sea resoluble tanto por los BFF (que piden el token) como por
+# core-service (que lo valida) dentro de la red de Docker.
+auth-server:
+  issuer-uri: http://localhost:9000
+  clientes:
+    # Un client_id/client_secret por BFF (a diferencia de la unica X-Internal-Api-Key
+    # compartida que reemplaza esta entrega): permite revocar o rotar las credenciales de un
+    # canal sin afectar a los otros dos. Solo valores de demostracion academica; en produccion
+    # viviria en un gestor de secretos, igual que el resto de las credenciales de este proyecto.
+    bff-web:
+      secreto: "secreto-oauth2-bff-web-banco-xyz-no-usar-en-produccion-2026"
+    bff-mobile:
+      secreto: "secreto-oauth2-bff-mobile-banco-xyz-no-usar-en-produccion-2026"
+    bff-atm:
+      secreto: "secreto-oauth2-bff-atm-banco-xyz-no-usar-en-produccion-2026"
+
+logging:
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{45} - %msg%n"
+  level:
+    root: INFO
+    com.bancoxyz.bff.auth: INFO
+    org.springframework.security.oauth2: INFO
