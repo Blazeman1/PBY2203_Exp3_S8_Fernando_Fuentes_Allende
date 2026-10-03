@@ -1,0 +1,57 @@
+
+=== 0. Login canal WEB (cuenta 101, 'John Doe') - se reutiliza para las 3 transferencias ===
+
+=== 1. Transferencia EXITOSA: cuenta 101 -> cuenta 105, $500 ===
+Saldo antes: cuenta 101 = 10000.0 | cuenta 105 = 9000.0
+{
+  "transferenciaId": "9af4f26c-f4cc-4a3a-9a6f-3c73b277ef1e",
+  "estado": "EN_PROCESO",
+  "mensaje": "Transferencia recibida y en procesamiento. Consulte su estado con GET /api/web/transferencias/9af4f26c-f4cc-4a3a-9a6f-3c73b277ef1e"
+}
+POST /transferencias -> HTTP 202 (se espera 202)
+Esperando el resultado final de la saga...
+{
+  "transferenciaId": "9af4f26c-f4cc-4a3a-9a6f-3c73b277ef1e",
+  "cuentaOrigen": 101,
+  "cuentaDestino": 105,
+  "monto": 500.0,
+  "estado": "COMPLETADA",
+  "detalle": null
+}
+Estado final -> COMPLETADA (se espera COMPLETADA)
+Saldo despues: cuenta 101 = 9500.0 (baja $500) | cuenta 105 = 9500.0 (sube $500)
+
+=== 2. Transferencia RECHAZADA: fondos insuficientes en la cuenta origen ===
+{
+  "transferenciaId": "e8194165-5270-4371-84d9-6d96de7f52d5",
+  "cuentaOrigen": 101,
+  "cuentaDestino": 105,
+  "monto": 999999999,
+  "estado": "RECHAZADA",
+  "detalle": "Saldo insuficiente en la cuenta origen (saldo=9500.0, solicitado=9.99999999E8)."
+}
+Estado final -> RECHAZADA (se espera RECHAZADA)
+Saldo cuenta 101: antes=9500.0 despues=9500.0 (deben ser iguales: nunca se llego a debitar)
+
+=== 3. Transferencia COMPENSADA: la cuenta destino no existe (se revierte el debito) ===
+{
+  "transferenciaId": "0ee41089-80f8-4e0d-9a7e-f0930b330f29",
+  "cuentaOrigen": 101,
+  "cuentaDestino": 999999,
+  "monto": 250.0,
+  "estado": "COMPENSADA",
+  "detalle": "La cuenta destino 999999 no existe; se revirtio el debito aplicado en la cuenta origen."
+}
+Estado final -> COMPENSADA (se espera COMPENSADA)
+Saldo cuenta 101: antes=9500.0 despues=9500.0 (deben ser iguales: se debito $250 y la compensacion lo volvio a acreditar)
+
+=== 4. Autorizacion: el token de la cuenta 101 no puede transferir DESDE la cuenta 105 ===
+POST /api/web/cuentas/105/transferencias con token de la cuenta 101 -> HTTP 403 (se espera 403)
+
+=== 5. Transferencias adicionales (para la evidencia de escalabilidad de notificaciones-service) ===
+{"transferenciaId":"7f4c3f5b-509b-4991-bfdd-6be2cf30385d","estado":"EN_PROCESO","mensaje":"Transferencia recibida y en procesamiento. Consulte su estado con GET /api/web/transferencias/7f4c3f5b-509b-4991-bfdd-6be2cf30385d"}
+{"transferenciaId":"704966d9-a4e1-4fc6-ad36-09660bd0c253","estado":"EN_PROCESO","mensaje":"Transferencia recibida y en procesamiento. Consulte su estado con GET /api/web/transferencias/704966d9-a4e1-4fc6-ad36-09660bd0c253"}
+{"transferenciaId":"a80aef95-b64c-4259-ac06-1020df0023ee","estado":"EN_PROCESO","mensaje":"Transferencia recibida y en procesamiento. Consulte su estado con GET /api/web/transferencias/a80aef95-b64c-4259-ac06-1020df0023ee"}
+Esperando unos segundos a que notificaciones-service procese los eventos generados...
+
+=== Fin de las pruebas de transferencias ===
