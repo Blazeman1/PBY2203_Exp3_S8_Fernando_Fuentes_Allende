@@ -4,26 +4,28 @@
 [INFO] 
 [INFO] config-server                                                      [jar]
 [INFO] eureka-server                                                      [jar]
+[INFO] auth-server                                                        [jar]
 [INFO] core-service                                                       [jar]
 [INFO] bff-web                                                            [jar]
 [INFO] bff-mobile                                                         [jar]
 [INFO] bff-atm                                                            [jar]
+[INFO] notificaciones-service                                             [jar]
 [INFO] banco-xyz-bff                                                      [pom]
 [INFO] 
 [INFO] ---------------------< com.bancoxyz:config-server >---------------------
-[INFO] Building config-server 1.0.0                                       [1/7]
+[INFO] Building config-server 1.0.0                                       [1/9]
 [INFO]   from config-server\pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ config-server ---
 [INFO] Copying 1 resource from src\main\resources to target\classes
-[INFO] Copying 4 resources from src\main\resources to target\classes
+[INFO] Copying 9 resources from src\main\resources to target\classes
 [INFO] 
 [INFO] --- compiler:3.13.0:compile (default-compile) @ config-server ---
 [INFO] Nothing to compile - all classes are up to date.
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ config-server ---
-[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\config-server\src\test\resources
+[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\config-server\src\test\resources
 [INFO] 
 [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ config-server ---
 [INFO] No sources to compile
@@ -34,11 +36,11 @@
 [INFO] --- jar:3.4.2:jar (default-jar) @ config-server ---
 [INFO] 
 [INFO] --- spring-boot:3.3.4:repackage (repackage) @ config-server ---
-[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\config-server\target\config-server.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
-[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\config-server\target\config-server.jar.original
+[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\config-server\target\config-server.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\config-server\target\config-server.jar.original
 [INFO] 
 [INFO] ---------------------< com.bancoxyz:eureka-server >---------------------
-[INFO] Building eureka-server 1.0.0                                       [2/7]
+[INFO] Building eureka-server 1.0.0                                       [2/9]
 [INFO]   from eureka-server\pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
@@ -50,7 +52,7 @@
 [INFO] Nothing to compile - all classes are up to date.
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ eureka-server ---
-[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\eureka-server\src\test\resources
+[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\eureka-server\src\test\resources
 [INFO] 
 [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ eureka-server ---
 [INFO] No sources to compile
@@ -61,23 +63,50 @@
 [INFO] --- jar:3.4.2:jar (default-jar) @ eureka-server ---
 [INFO] 
 [INFO] --- spring-boot:3.3.4:repackage (repackage) @ eureka-server ---
-[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\eureka-server\target\eureka-server.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
-[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\eureka-server\target\eureka-server.jar.original
+[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\eureka-server\target\eureka-server.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\eureka-server\target\eureka-server.jar.original
+[INFO] 
+[INFO] ----------------------< com.bancoxyz:auth-server >----------------------
+[INFO] Building auth-server 1.0.0                                         [3/9]
+[INFO]   from auth-server\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ auth-server ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ auth-server ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ auth-server ---
+[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\auth-server\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ auth-server ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ auth-server ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ auth-server ---
+[INFO] 
+[INFO] --- spring-boot:3.3.4:repackage (repackage) @ auth-server ---
+[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\auth-server\target\auth-server.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\auth-server\target\auth-server.jar.original
 [INFO] 
 [INFO] ---------------------< com.bancoxyz:core-service >----------------------
-[INFO] Building core-service 1.0.0                                        [3/7]
+[INFO] Building core-service 1.0.0                                        [4/9]
 [INFO]   from core-service\pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ core-service ---
-[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 2 resources from src\main\resources to target\classes
 [INFO] Copying 2 resources from src\main\resources to target\classes
 [INFO] 
 [INFO] --- compiler:3.13.0:compile (default-compile) @ core-service ---
 [INFO] Nothing to compile - all classes are up to date.
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ core-service ---
-[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\core-service\src\test\resources
+[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\core-service\src\test\resources
 [INFO] 
 [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ core-service ---
 [INFO] No sources to compile
@@ -88,23 +117,23 @@
 [INFO] --- jar:3.4.2:jar (default-jar) @ core-service ---
 [INFO] 
 [INFO] --- spring-boot:3.3.4:repackage (repackage) @ core-service ---
-[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\core-service\target\core-service.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
-[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\core-service\target\core-service.jar.original
+[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\core-service\target\core-service.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\core-service\target\core-service.jar.original
 [INFO] 
 [INFO] ------------------------< com.bancoxyz:bff-web >------------------------
-[INFO] Building bff-web 1.0.0                                             [4/7]
+[INFO] Building bff-web 1.0.0                                             [5/9]
 [INFO]   from bff-web\pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ bff-web ---
-[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 2 resources from src\main\resources to target\classes
 [INFO] Copying 1 resource from src\main\resources to target\classes
 [INFO] 
 [INFO] --- compiler:3.13.0:compile (default-compile) @ bff-web ---
 [INFO] Nothing to compile - all classes are up to date.
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ bff-web ---
-[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\bff-web\src\test\resources
+[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\bff-web\src\test\resources
 [INFO] 
 [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ bff-web ---
 [INFO] No sources to compile
@@ -115,23 +144,23 @@
 [INFO] --- jar:3.4.2:jar (default-jar) @ bff-web ---
 [INFO] 
 [INFO] --- spring-boot:3.3.4:repackage (repackage) @ bff-web ---
-[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\bff-web\target\bff-web.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
-[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\bff-web\target\bff-web.jar.original
+[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\bff-web\target\bff-web.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\bff-web\target\bff-web.jar.original
 [INFO] 
 [INFO] ----------------------< com.bancoxyz:bff-mobile >-----------------------
-[INFO] Building bff-mobile 1.0.0                                          [5/7]
+[INFO] Building bff-mobile 1.0.0                                          [6/9]
 [INFO]   from bff-mobile\pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ bff-mobile ---
-[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 2 resources from src\main\resources to target\classes
 [INFO] Copying 1 resource from src\main\resources to target\classes
 [INFO] 
 [INFO] --- compiler:3.13.0:compile (default-compile) @ bff-mobile ---
 [INFO] Nothing to compile - all classes are up to date.
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ bff-mobile ---
-[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\bff-mobile\src\test\resources
+[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\bff-mobile\src\test\resources
 [INFO] 
 [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ bff-mobile ---
 [INFO] No sources to compile
@@ -142,23 +171,23 @@
 [INFO] --- jar:3.4.2:jar (default-jar) @ bff-mobile ---
 [INFO] 
 [INFO] --- spring-boot:3.3.4:repackage (repackage) @ bff-mobile ---
-[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\bff-mobile\target\bff-mobile.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
-[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\bff-mobile\target\bff-mobile.jar.original
+[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\bff-mobile\target\bff-mobile.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\bff-mobile\target\bff-mobile.jar.original
 [INFO] 
 [INFO] ------------------------< com.bancoxyz:bff-atm >------------------------
-[INFO] Building bff-atm 1.0.0                                             [6/7]
+[INFO] Building bff-atm 1.0.0                                             [7/9]
 [INFO]   from bff-atm\pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO] 
 [INFO] --- resources:3.3.1:resources (default-resources) @ bff-atm ---
-[INFO] Copying 1 resource from src\main\resources to target\classes
+[INFO] Copying 2 resources from src\main\resources to target\classes
 [INFO] Copying 1 resource from src\main\resources to target\classes
 [INFO] 
 [INFO] --- compiler:3.13.0:compile (default-compile) @ bff-atm ---
 [INFO] Nothing to compile - all classes are up to date.
 [INFO] 
 [INFO] --- resources:3.3.1:testResources (default-testResources) @ bff-atm ---
-[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\bff-atm\src\test\resources
+[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\bff-atm\src\test\resources
 [INFO] 
 [INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ bff-atm ---
 [INFO] No sources to compile
@@ -169,26 +198,55 @@
 [INFO] --- jar:3.4.2:jar (default-jar) @ bff-atm ---
 [INFO] 
 [INFO] --- spring-boot:3.3.4:repackage (repackage) @ bff-atm ---
-[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\bff-atm\target\bff-atm.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
-[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\bff-atm\target\bff-atm.jar.original
+[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\bff-atm\target\bff-atm.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\bff-atm\target\bff-atm.jar.original
+[INFO] 
+[INFO] ----------------< com.bancoxyz:notificaciones-service >-----------------
+[INFO] Building notificaciones-service 1.0.0                              [8/9]
+[INFO]   from notificaciones-service\pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ notificaciones-service ---
+[INFO] Copying 2 resources from src\main\resources to target\classes
+[INFO] Copying 0 resource from src\main\resources to target\classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ notificaciones-service ---
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ notificaciones-service ---
+[INFO] skip non existing resourceDirectory C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\notificaciones-service\src\test\resources
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ notificaciones-service ---
+[INFO] No sources to compile
+[INFO] 
+[INFO] --- surefire:3.2.5:test (default-test) @ notificaciones-service ---
+[INFO] Tests are skipped.
+[INFO] 
+[INFO] --- jar:3.4.2:jar (default-jar) @ notificaciones-service ---
+[INFO] 
+[INFO] --- spring-boot:3.3.4:repackage (repackage) @ notificaciones-service ---
+[INFO] Replacing main artifact C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\notificaciones-service\target\notificaciones-service.jar with repackaged archive, adding nested dependencies in BOOT-INF/.
+[INFO] The original artifact has been renamed to C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\notificaciones-service\target\notificaciones-service.jar.original
 [INFO] 
 [INFO] ---------------------< com.bancoxyz:banco-xyz-bff >---------------------
-[INFO] Building banco-xyz-bff 1.0.0                                       [7/7]
+[INFO] Building banco-xyz-bff 1.0.0                                       [9/9]
 [INFO]   from pom.xml
 [INFO] --------------------------------[ pom ]---------------------------------
 [INFO] ------------------------------------------------------------------------
 [INFO] Reactor Summary for banco-xyz-bff 1.0.0:
 [INFO] 
-[INFO] config-server ...................................... SUCCESS [  1.705 s]
-[INFO] eureka-server ...................................... SUCCESS [  0.429 s]
-[INFO] core-service ....................................... SUCCESS [  0.165 s]
-[INFO] bff-web ............................................ SUCCESS [  0.178 s]
-[INFO] bff-mobile ......................................... SUCCESS [  0.134 s]
-[INFO] bff-atm ............................................ SUCCESS [  0.167 s]
-[INFO] banco-xyz-bff ...................................... SUCCESS [  0.001 s]
+[INFO] config-server ...................................... SUCCESS [  2.247 s]
+[INFO] eureka-server ...................................... SUCCESS [  0.582 s]
+[INFO] auth-server ........................................ SUCCESS [  0.298 s]
+[INFO] core-service ....................................... SUCCESS [  0.415 s]
+[INFO] bff-web ............................................ SUCCESS [  0.396 s]
+[INFO] bff-mobile ......................................... SUCCESS [  0.272 s]
+[INFO] bff-atm ............................................ SUCCESS [  0.286 s]
+[INFO] notificaciones-service ............................. SUCCESS [  0.268 s]
+[INFO] banco-xyz-bff ...................................... SUCCESS [  0.000 s]
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  3.267 s
-[INFO] Finished at: 2026-09-17T19:32:05-03:00
+[INFO] Total time:  5.440 s
+[INFO] Finished at: 2026-10-03T14:11:11-03:00
 [INFO] ------------------------------------------------------------------------

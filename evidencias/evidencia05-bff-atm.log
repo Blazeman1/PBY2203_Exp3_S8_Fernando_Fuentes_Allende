@@ -8,58 +8,59 @@
 
  :: Spring Boot ::                (v3.3.4)
 
-2026-09-26 14:03:09.817 [main] INFO  com.bancoxyz.bff.atm.BffAtmApplication - Starting BffAtmApplication v1.0.0 using Java 24 with PID 22256 (C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\bff-atm\target\bff-atm.jar started by ffuen in C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18)
-2026-09-26 14:03:09.828 [main] INFO  com.bancoxyz.bff.atm.BffAtmApplication - No active profile set, falling back to 1 default profile: "default"
-2026-09-26 14:03:09.892 [main] INFO  o.s.c.c.client.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888
-2026-09-26 14:03:09.892 [main] INFO  o.s.c.c.client.ConfigServerConfigDataLoader - Located environment: name=bff-atm, profiles=[default], label=null, version=null, state=null
-2026-09-26 14:03:11.332 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=a0cefe29-56b2-383a-ba3d-4a68be555b71
+2026-10-03 14:12:59.844 [main] INFO  com.bancoxyz.bff.atm.BffAtmApplication - Starting BffAtmApplication v1.0.0 using Java 24 with PID 6104 (C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\bff-atm\target\bff-atm.jar started by ffuen in C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende)
+2026-10-03 14:12:59.848 [main] INFO  com.bancoxyz.bff.atm.BffAtmApplication - No active profile set, falling back to 1 default profile: "default"
+2026-10-03 14:12:59.908 [main] INFO  o.s.c.c.client.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888
+2026-10-03 14:12:59.908 [main] INFO  o.s.c.c.client.ConfigServerConfigDataLoader - Located environment: name=bff-atm, profiles=[default], label=null, version=null, state=null
+2026-10-03 14:13:01.335 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=bd0d6be3-3594-33cf-9e53-bc14b8197979
 WARNING: A restricted method in java.lang.System has been called
-WARNING: java.lang.System::load has been called by org.apache.tomcat.jni.Library in an unnamed module (jar:nested:/C:/Users/ffuen/Desktop/PBY2203_Exp3_S6_Grupo18/bff-atm/target/bff-atm.jar/!BOOT-INF/lib/tomcat-embed-core-10.1.30.jar!/)
+WARNING: java.lang.System::load has been called by org.apache.tomcat.jni.Library in an unnamed module (jar:nested:/C:/Users/ffuen/Desktop/PBY2203_Exp3_S8_Fernando_Fuentes_Allende/bff-atm/target/bff-atm.jar/!BOOT-INF/lib/tomcat-embed-core-10.1.30.jar!/)
 WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
 WARNING: Restricted methods will be blocked in a future release unless native access is enabled
 
-2026-09-26 14:03:12.317 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8083 (https)
-2026-09-26 14:03:12.338 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-26 14:03:12.338 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
-2026-09-26 14:03:12.384 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-09-26 14:03:12.384 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2491 ms
-2026-09-26 14:03:15.096 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
-2026-09-26 14:03:16.142 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
-2026-09-26 14:03:16.181 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
-2026-09-26 14:03:16.277 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2026-09-26 14:03:16.316 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
-2026-09-26 14:03:16.365 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
-2026-09-26 14:03:16.374 [main] INFO  c.n.d.s.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2026-09-26 14:03:16.389 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
-2026-09-26 14:03:16.389 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
-2026-09-26 14:03:16.389 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
-2026-09-26 14:03:16.389 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
-2026-09-26 14:03:16.389 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
-2026-09-26 14:03:16.389 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
-2026-09-26 14:03:16.390 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
-2026-09-26 14:03:16.569 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
-2026-09-26 14:03:16.572 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
-2026-09-26 14:03:16.574 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
-2026-09-26 14:03:16.576 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1790442196576 with initial instances count: 2
-2026-09-26 14:03:16.585 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application BFF-ATM with eureka with status UP
-2026-09-26 14:03:16.585 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1790442196585, current=UP, previous=STARTING]
-2026-09-26 14:03:16.588 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_BFF-ATM/localhost:bff-atm:8083: registering service...
-2026-09-26 14:03:16.626 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_BFF-ATM/localhost:bff-atm:8083 - registration status: 204
-2026-09-26 14:03:16.684 [main] INFO  o.a.tomcat.util.net.NioEndpoint.certificate - Connector [https-jsse-nio-8083], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\ffuen\.keystore] using alias [bffatm] with trust store [null]
-2026-09-26 14:03:16.703 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8083 (https) with context path '/'
-2026-09-26 14:03:16.704 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8083
+2026-10-03 14:13:02.594 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8083 (https)
+2026-10-03 14:13:02.627 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-10-03 14:13:02.627 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+2026-10-03 14:13:02.689 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-10-03 14:13:02.690 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2778 ms
+2026-10-03 14:13:05.988 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2026-10-03 14:13:07.399 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2026-10-03 14:13:07.421 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2026-10-03 14:13:07.503 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-10-03 14:13:07.520 [main] INFO  o.s.b.a.endpoint.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-10-03 14:13:07.580 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2026-10-03 14:13:07.603 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2026-10-03 14:13:07.607 [main] INFO  c.n.d.s.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2026-10-03 14:13:07.615 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2026-10-03 14:13:07.615 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2026-10-03 14:13:07.615 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2026-10-03 14:13:07.615 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2026-10-03 14:13:07.615 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2026-10-03 14:13:07.615 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2026-10-03 14:13:07.615 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2026-10-03 14:13:07.742 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2026-10-03 14:13:07.744 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2026-10-03 14:13:07.746 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-10-03 14:13:07.747 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1791047587746 with initial instances count: 3
+2026-10-03 14:13:07.755 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application BFF-ATM with eureka with status UP
+2026-10-03 14:13:07.756 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1791047587756, current=UP, previous=STARTING]
+2026-10-03 14:13:07.758 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_BFF-ATM/localhost:bff-atm:8083: registering service...
+2026-10-03 14:13:07.800 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_BFF-ATM/localhost:bff-atm:8083 - registration status: 204
+2026-10-03 14:13:07.881 [main] INFO  o.a.tomcat.util.net.NioEndpoint.certificate - Connector [https-jsse-nio-8083], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\ffuen\.keystore] using alias [bffatm] with trust store [null]
+2026-10-03 14:13:07.904 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8083 (https) with context path '/'
+2026-10-03 14:13:07.905 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8083
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::invokeCleaner has been called by org.apache.tomcat.util.buf.ByteBufferUtils (jar:nested:/C:/Users/ffuen/Desktop/PBY2203_Exp3_S6_Grupo18/bff-atm/target/bff-atm.jar/!BOOT-INF/lib/tomcat-embed-core-10.1.30.jar!/)
+WARNING: sun.misc.Unsafe::invokeCleaner has been called by org.apache.tomcat.util.buf.ByteBufferUtils (jar:nested:/C:/Users/ffuen/Desktop/PBY2203_Exp3_S8_Fernando_Fuentes_Allende/bff-atm/target/bff-atm.jar/!BOOT-INF/lib/tomcat-embed-core-10.1.30.jar!/)
 WARNING: Please consider reporting this to the maintainers of class org.apache.tomcat.util.buf.ByteBufferUtils
 WARNING: sun.misc.Unsafe::invokeCleaner will be removed in a future release
-2026-09-26 14:03:17.677 [https-jsse-nio-8083-exec-5] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-09-26 14:03:17.677 [https-jsse-nio-8083-exec-5] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-09-26 14:03:17.677 [https-jsse-nio-8083-exec-5] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
-2026-09-26 14:03:17.688 [https-jsse-nio-8083-exec-5] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2026-09-26 14:03:17.717 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
-2026-09-26 14:03:17.738 [main] INFO  com.bancoxyz.bff.atm.BffAtmApplication - Started BffAtmApplication in 9.923 seconds (process running for 10.55)
-2026-09-26 14:03:18.876 [https-jsse-nio-8083-exec-10] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2026-09-26 14:03:19.997 [https-jsse-nio-8083-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2026-09-26 14:03:21.117 [https-jsse-nio-8083-exec-1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2026-09-26 14:03:22.234 [https-jsse-nio-8083-exec-7] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2026-09-26 14:04:02.465 [https-jsse-nio-8083-exec-2] INFO  c.b.bff.atm.controller.CuentaAtmController - Retiro confirmado: cuenta=105 monto=1000.0 nuevoSaldo=9000.0
+2026-10-03 14:13:08.046 [https-jsse-nio-8083-exec-10] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-03 14:13:08.046 [https-jsse-nio-8083-exec-10] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-10-03 14:13:08.047 [https-jsse-nio-8083-exec-10] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-10-03 14:13:08.066 [https-jsse-nio-8083-exec-10] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2026-10-03 14:13:08.914 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2026-10-03 14:13:08.933 [main] INFO  com.bancoxyz.bff.atm.BffAtmApplication - Started BffAtmApplication in 11.33 seconds (process running for 12.129)
+2026-10-03 14:13:09.259 [https-jsse-nio-8083-exec-1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2026-10-03 14:13:10.411 [https-jsse-nio-8083-exec-6] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2026-10-03 14:13:11.540 [https-jsse-nio-8083-exec-4] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2026-10-03 14:13:12.662 [https-jsse-nio-8083-exec-9] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2026-10-03 14:13:46.376 [https-jsse-nio-8083-exec-6] INFO  c.b.bff.atm.controller.CuentaAtmController - Retiro confirmado: cuenta=105 monto=1000.0 nuevoSaldo=9000.0

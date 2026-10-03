@@ -8,57 +8,57 @@
 
  :: Spring Boot ::                (v3.3.4)
 
-2026-09-26 14:02:54.459 [main] INFO  com.bancoxyz.bff.mobile.BffMobileApplication - Starting BffMobileApplication v1.0.0 using Java 24 with PID 6128 (C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18\bff-mobile\target\bff-mobile.jar started by ffuen in C:\Users\ffuen\Desktop\PBY2203_Exp3_S6_Grupo18)
-2026-09-26 14:02:54.464 [main] INFO  com.bancoxyz.bff.mobile.BffMobileApplication - No active profile set, falling back to 1 default profile: "default"
-2026-09-26 14:02:54.534 [main] INFO  o.s.c.c.client.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888
-2026-09-26 14:02:54.534 [main] INFO  o.s.c.c.client.ConfigServerConfigDataLoader - Located environment: name=bff-mobile, profiles=[default], label=null, version=null, state=null
-2026-09-26 14:02:55.628 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=50500e7d-742c-3b94-8136-f1c4552a597b
+2026-10-03 14:12:40.603 [main] INFO  com.bancoxyz.bff.mobile.BffMobileApplication - Starting BffMobileApplication v1.0.0 using Java 24 with PID 12656 (C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende\bff-mobile\target\bff-mobile.jar started by ffuen in C:\Users\ffuen\Desktop\PBY2203_Exp3_S8_Fernando_Fuentes_Allende)
+2026-10-03 14:12:40.608 [main] INFO  com.bancoxyz.bff.mobile.BffMobileApplication - No active profile set, falling back to 1 default profile: "default"
+2026-10-03 14:12:40.665 [main] INFO  o.s.c.c.client.ConfigServerConfigDataLoader - Fetching config from server at : http://localhost:8888
+2026-10-03 14:12:40.665 [main] INFO  o.s.c.c.client.ConfigServerConfigDataLoader - Located environment: name=bff-mobile, profiles=[default], label=null, version=null, state=null
+2026-10-03 14:12:42.545 [main] INFO  o.s.cloud.context.scope.GenericScope - BeanFactory id=178d0e1c-6da0-3bfa-a5ee-3fe8f8e59c8e
 WARNING: A restricted method in java.lang.System has been called
-WARNING: java.lang.System::load has been called by org.apache.tomcat.jni.Library in an unnamed module (jar:nested:/C:/Users/ffuen/Desktop/PBY2203_Exp3_S6_Grupo18/bff-mobile/target/bff-mobile.jar/!BOOT-INF/lib/tomcat-embed-core-10.1.30.jar!/)
+WARNING: java.lang.System::load has been called by org.apache.tomcat.jni.Library in an unnamed module (jar:nested:/C:/Users/ffuen/Desktop/PBY2203_Exp3_S8_Fernando_Fuentes_Allende/bff-mobile/target/bff-mobile.jar/!BOOT-INF/lib/tomcat-embed-core-10.1.30.jar!/)
 WARNING: Use --enable-native-access=ALL-UNNAMED to avoid a warning for callers in this module
 WARNING: Restricted methods will be blocked in a future release unless native access is enabled
 
-2026-09-26 14:02:56.556 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (https)
-2026-09-26 14:02:56.576 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
-2026-09-26 14:02:56.577 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
-2026-09-26 14:02:56.631 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
-2026-09-26 14:02:56.632 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 2096 ms
-2026-09-26 14:02:59.785 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
-2026-09-26 14:03:00.858 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
-2026-09-26 14:03:00.897 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
-2026-09-26 14:03:00.985 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2026-09-26 14:03:01.023 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
-2026-09-26 14:03:01.067 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
-2026-09-26 14:03:01.073 [main] INFO  c.n.d.s.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
-2026-09-26 14:03:01.086 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
-2026-09-26 14:03:01.086 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
-2026-09-26 14:03:01.086 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
-2026-09-26 14:03:01.086 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
-2026-09-26 14:03:01.086 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
-2026-09-26 14:03:01.086 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
-2026-09-26 14:03:01.086 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
-2026-09-26 14:03:01.247 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
-2026-09-26 14:03:01.249 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
-2026-09-26 14:03:01.251 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
-2026-09-26 14:03:01.253 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1790442181253 with initial instances count: 2
-2026-09-26 14:03:01.262 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application BFF-MOBILE with eureka with status UP
-2026-09-26 14:03:01.262 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1790442181262, current=UP, previous=STARTING]
-2026-09-26 14:03:01.263 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_BFF-MOBILE/localhost:bff-mobile:8082: registering service...
-2026-09-26 14:03:01.307 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_BFF-MOBILE/localhost:bff-mobile:8082 - registration status: 204
-2026-09-26 14:03:01.393 [main] INFO  o.a.tomcat.util.net.NioEndpoint.certificate - Connector [https-jsse-nio-8082], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\ffuen\.keystore] using alias [bffmobile] with trust store [null]
-2026-09-26 14:03:01.411 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8082 (https) with context path '/'
-2026-09-26 14:03:01.412 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8082
+2026-10-03 14:12:47.227 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat initialized with port 8082 (https)
+2026-10-03 14:12:47.250 [main] INFO  org.apache.catalina.core.StandardService - Starting service [Tomcat]
+2026-10-03 14:12:47.251 [main] INFO  org.apache.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.30]
+2026-10-03 14:12:47.311 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2026-10-03 14:12:47.312 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 6644 ms
+2026-10-03 14:12:50.884 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2026-10-03 14:12:52.257 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2026-10-03 14:12:52.297 [main] INFO  o.s.c.n.e.c.DiscoveryClientOptionalArgsConfiguration - Eureka HTTP Client uses RestTemplate.
+2026-10-03 14:12:52.389 [main] WARN  o.s.c.l.c.LoadBalancerCacheAutoConfiguration$LoadBalancerCaffeineWarnLogger - Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-10-03 14:12:52.410 [main] INFO  o.s.b.a.endpoint.web.EndpointLinksResolver - Exposing 1 endpoint beneath base path '/actuator'
+2026-10-03 14:12:52.473 [main] INFO  o.s.cloud.netflix.eureka.InstanceInfoFactory - Setting initial instance status as: STARTING
+2026-10-03 14:12:52.505 [main] INFO  com.netflix.discovery.DiscoveryClient - Initializing Eureka in region us-east-1
+2026-10-03 14:12:52.510 [main] INFO  c.n.d.s.resolver.aws.ConfigClusterResolver - Resolving eureka endpoints via configuration
+2026-10-03 14:12:52.516 [main] INFO  com.netflix.discovery.DiscoveryClient - Disable delta property : false
+2026-10-03 14:12:52.517 [main] INFO  com.netflix.discovery.DiscoveryClient - Single vip registry refresh property : null
+2026-10-03 14:12:52.517 [main] INFO  com.netflix.discovery.DiscoveryClient - Force full registry fetch : false
+2026-10-03 14:12:52.517 [main] INFO  com.netflix.discovery.DiscoveryClient - Application is null : false
+2026-10-03 14:12:52.517 [main] INFO  com.netflix.discovery.DiscoveryClient - Registered Applications size is zero : true
+2026-10-03 14:12:52.517 [main] INFO  com.netflix.discovery.DiscoveryClient - Application version is -1: true
+2026-10-03 14:12:52.517 [main] INFO  com.netflix.discovery.DiscoveryClient - Getting all instance registry info from the eureka server
+2026-10-03 14:12:52.638 [main] INFO  com.netflix.discovery.DiscoveryClient - The response status is 200
+2026-10-03 14:12:52.640 [main] INFO  com.netflix.discovery.DiscoveryClient - Starting heartbeat executor: renew interval is: 30
+2026-10-03 14:12:52.642 [main] INFO  com.netflix.discovery.InstanceInfoReplicator - InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-10-03 14:12:52.643 [main] INFO  com.netflix.discovery.DiscoveryClient - Discovery Client initialized at timestamp 1791047572643 with initial instances count: 1
+2026-10-03 14:12:52.653 [main] INFO  o.s.c.n.e.s.EurekaServiceRegistry - Registering application BFF-MOBILE with eureka with status UP
+2026-10-03 14:12:52.653 [main] INFO  com.netflix.discovery.DiscoveryClient - Saw local status change event StatusChangeEvent [timestamp=1791047572653, current=UP, previous=STARTING]
+2026-10-03 14:12:52.655 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_BFF-MOBILE/localhost:bff-mobile:8082: registering service...
+2026-10-03 14:12:52.691 [DiscoveryClient-InstanceInfoReplicator-%d] INFO  com.netflix.discovery.DiscoveryClient - DiscoveryClient_BFF-MOBILE/localhost:bff-mobile:8082 - registration status: 204
+2026-10-03 14:12:52.746 [main] INFO  o.a.tomcat.util.net.NioEndpoint.certificate - Connector [https-jsse-nio-8082], TLS virtual host [_default_], certificate type [UNDEFINED] configured from keystore [C:\Users\ffuen\.keystore] using alias [bffmobile] with trust store [null]
+2026-10-03 14:12:52.774 [main] INFO  o.s.boot.web.embedded.tomcat.TomcatWebServer - Tomcat started on port 8082 (https) with context path '/'
+2026-10-03 14:12:52.776 [main] INFO  o.s.c.n.e.s.EurekaAutoServiceRegistration - Updating port to 8082
 WARNING: A terminally deprecated method in sun.misc.Unsafe has been called
-WARNING: sun.misc.Unsafe::invokeCleaner has been called by org.apache.tomcat.util.buf.ByteBufferUtils (jar:nested:/C:/Users/ffuen/Desktop/PBY2203_Exp3_S6_Grupo18/bff-mobile/target/bff-mobile.jar/!BOOT-INF/lib/tomcat-embed-core-10.1.30.jar!/)
+WARNING: sun.misc.Unsafe::invokeCleaner has been called by org.apache.tomcat.util.buf.ByteBufferUtils (jar:nested:/C:/Users/ffuen/Desktop/PBY2203_Exp3_S8_Fernando_Fuentes_Allende/bff-mobile/target/bff-mobile.jar/!BOOT-INF/lib/tomcat-embed-core-10.1.30.jar!/)
 WARNING: Please consider reporting this to the maintainers of class org.apache.tomcat.util.buf.ByteBufferUtils
 WARNING: sun.misc.Unsafe::invokeCleaner will be removed in a future release
-2026-09-26 14:03:02.362 [https-jsse-nio-8082-exec-5] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-09-26 14:03:02.362 [https-jsse-nio-8082-exec-5] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
-2026-09-26 14:03:02.363 [https-jsse-nio-8082-exec-5] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
-2026-09-26 14:03:02.374 [https-jsse-nio-8082-exec-5] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2026-09-26 14:03:02.419 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
-2026-09-26 14:03:02.436 [main] INFO  com.bancoxyz.bff.mobile.BffMobileApplication - Started BffMobileApplication in 10.064 seconds (process running for 10.691)
-2026-09-26 14:03:03.545 [https-jsse-nio-8082-exec-10] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2026-09-26 14:03:04.662 [https-jsse-nio-8082-exec-6] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2026-09-26 14:03:05.786 [https-jsse-nio-8082-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
-2026-09-26 14:03:06.920 [https-jsse-nio-8082-exec-9] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2026-10-03 14:12:53.037 [https-jsse-nio-8082-exec-8] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-03 14:12:53.037 [https-jsse-nio-8082-exec-8] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2026-10-03 14:12:53.038 [https-jsse-nio-8082-exec-8] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2026-10-03 14:12:53.049 [https-jsse-nio-8082-exec-8] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2026-10-03 14:12:53.784 [main] INFO  o.s.cloud.commons.util.InetUtils - Cannot determine local hostname
+2026-10-03 14:12:53.798 [main] INFO  com.bancoxyz.bff.mobile.BffMobileApplication - Started BffMobileApplication in 15.28 seconds (process running for 15.926)
+2026-10-03 14:12:54.224 [https-jsse-nio-8082-exec-2] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2026-10-03 14:12:55.348 [https-jsse-nio-8082-exec-7] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]
+2026-10-03 14:12:56.490 [https-jsse-nio-8082-exec-6] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.HttpRequestMethodNotSupportedException: Request method 'GET' is not supported]

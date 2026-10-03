@@ -1,8 +1,11 @@
 
-=== 0. core-service NO debe responder sin la clave interna (principio central del BFF) ===
-GET /internal/cuentas SIN clave -> HTTP 403 (se espera 403)
+=== 0. core-service NO debe responder sin un token OAuth2 valido (principio central del BFF) ===
+GET /internal/cuentas SIN token -> HTTP 401 (se espera 401)
 
-=== 0.1 core-service SI responde con la clave interna (uso exclusivo de los BFF) ===
+=== 0.1 auth-server emite un access token via client_credentials (flujo maquina-a-maquina, Semana 8) ===
+Token interno obtenido: eyJraWQiOiI2M2JmNmM0MC1j...
+
+=== 0.2 core-service SI responde con ese token Bearer (uso exclusivo de los BFF) ===
 {
   "cuentaId": 101,
   "titular": "John Doe",
@@ -689,7 +692,7 @@ Token movil obtenido: eyJhbGciOiJIUzI1NiJ9.eyJ...
 
 === 3. BFF CAJERO: apertura de sesion con tarjeta+PIN (cuenta 105, 'Steve Rogers') ===
 {
-  "sessionToken": "3feac334-9e06-418f-a620-3f46eeea234e",
+  "sessionToken": "30b1a6c6-33fe-4893-ab02-3e9f7fb5c7bd",
   "expiraEnSegundos": 120,
   "cuentaId": 105
 }
