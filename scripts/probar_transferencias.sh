@@ -29,7 +29,7 @@ TOKEN_INTERNO=""
 token_interno() {
   if [ -z "$TOKEN_INTERNO" ] || [ "$TOKEN_INTERNO" = "null" ]; then
     TOKEN_INTERNO=$(curl -s -u "$CLIENT_ID_INTERNO:$CLIENT_SECRET_INTERNO" \
-      -d "grant_type=client_credentials" "$AUTH_SERVER/oauth2/token" | jq -r .access_token)
+      -d "grant_type=client_credentials" -d "scope=core-service.access" "$AUTH_SERVER/oauth2/token" | jq -r .access_token)
   fi
   echo "$TOKEN_INTERNO"
 }

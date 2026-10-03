@@ -56,7 +56,7 @@ curl -s -o /dev/null -w "GET /internal/cuentas SIN token -> HTTP %{http_code} (s
 
 separador "0.1 auth-server emite un access token via client_credentials (flujo maquina-a-maquina, Semana 8)"
 TOKEN_INTERNO=$(curl -s -u "$CLIENT_ID_INTERNO:$CLIENT_SECRET_INTERNO" \
-  -d "grant_type=client_credentials" "$AUTH_SERVER/oauth2/token" | jq -r .access_token)
+  -d "grant_type=client_credentials" -d "scope=core-service.access" "$AUTH_SERVER/oauth2/token" | jq -r .access_token)
 verificar_token "token interno (client_credentials)" "$TOKEN_INTERNO"
 echo "Token interno obtenido: ${TOKEN_INTERNO:0:24}..."
 

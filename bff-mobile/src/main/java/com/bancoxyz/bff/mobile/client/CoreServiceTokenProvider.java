@@ -59,6 +59,14 @@ public class CoreServiceTokenProvider {
 
         MultiValueMap<String, String> body = new LinkedMultiValueMap<>();
         body.add("grant_type", "client_credentials");
+        // Imprescindible: a diferencia de lo que podria asumirse, Spring Authorization Server NO
+        // concede automaticamente todos los scopes configurados para el cliente (ver
+        // AuthorizationServerConfig.clienteServicioAServicio) cuando una peticion
+        // client_credentials omite el parametro "scope" -el token resultante queda SIN scope
+        // alguno. core-service exige la autoridad SCOPE_core-service.access (ver
+        // ResourceServerConfig), asi que sin esto cada llamada a core-service responde 403
+        // insufficient_scope. Se detecto exactamente este caso en una corrida real del proyecto.
+        body.add("scope", "core-service.access");
 
         var respuesta = restTemplateAuthServer.postForEntity(
                 propiedades.getOauth2().getTokenUri(),
